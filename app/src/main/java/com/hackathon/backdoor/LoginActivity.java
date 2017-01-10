@@ -8,12 +8,14 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -46,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
+    private static final String KEY_USER_LOGGED_IN = "BACK_DOOR_OPEN";
+    private static final String KEY_USER_NAME = "ACCESS_TO_EMAIL";
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -69,7 +73,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (prefs.getBoolean(KEY_USER_LOGGED_IN, false)) {
+            startBackDoorScreen();
+        }
+        String email = prefs.getString(KEY_USER_NAME, null);
         mEmailView = (TextInputEditText) findViewById(R.id.email);
+        mEmailView.setText(email);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -284,7 +295,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1500);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                preferences.edit().putBoolean(KEY_USER_LOGGED_IN, true).apply();
+                preferences.edit().putString(KEY_USER_NAME, mEmail).apply();
             } catch (InterruptedException e) {
                 return false;
             }
