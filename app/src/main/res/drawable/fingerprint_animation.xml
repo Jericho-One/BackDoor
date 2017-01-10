@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="true">
+    <item android:drawable="@drawable/fingerprint_0000" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0001" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0002" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0003" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0004" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0005" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0006" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0007" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0008" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0009" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0010" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0011" android:duration="@integer/animation_duration" />
+    <item android:drawable="@drawable/fingerprint_0012" android:duration="@integer/animation_duration" />
+</animation-list>
